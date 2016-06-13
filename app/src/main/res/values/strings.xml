@@ -1,0 +1,37 @@
+<resources>
+    <string name="app_name">GoodHabits</string>
+    <string name="to_do_list">To Do List</string>
+    <string name="statistics">Statistics</string>
+    <string name="add_new">Add New</string>
+    <string name="name_of_useful_habit">name of useful habit:</string>
+    <string name="rate_the_importance">rate the importance of this habit</string>
+    <string name="ok">ok</string>
+    <string name="cancel">cancel</string>
+    <string name="delete">delete</string>
+    <string name="delete_question">Do you really want to delete this item?</string>
+    <string name="toast_enter_the_name_of_habit">Please, enter the name of habit correctly</string>
+    <string name="clean_all_information">Clean all information</string>
+    <string name="you_must_enter">You must enter your name</string>
+    <string name="incorrect_pass">Incorrect password!</string>
+    <string name="default_habit">Make something good in this world</string>want to create a new account?
+    <string name="create_new_account">Want to create a new account?</string>
+    <string name="show_current_user">Show(hide) current user</string>
+    <string name="now_login">Now you are log in as: </string>
+    <string name="warning">Warning!</string>
+    <string name="really">Do you really want to delete all the information? The data can not be restored!</string>
+
+    <string name="sun">Sunday</string>
+    <string name="mon">Monday</string>
+    <string name="tue">Tuesday</string>
+    <string name="wed">Wednesday</string>
+    <string name="thu">Thursday</string>
+    <string name="fri">Friday</string>
+    <string name="sat">Saturday</string>
+
+
+    <string name="greeting">Hello! \nPlease, enter your name...</string>
+    <string name="greeting_pass">... and pass =)</string>
+    <string name="enter">enter</string>
+    <string name="menu_item_logout">Logout</string>
+
+</resources>
