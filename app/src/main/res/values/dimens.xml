@@ -2,7 +2,7 @@
     <!-- Default screen margins, per the Android Design guidelines. -->
     <dimen name="activity_horizontal_margin">1dp</dimen>
     <dimen name="activity_vertical_margin">1dp</dimen>
-    <dimen name="corners">5dp</dimen>
+    <dimen name="corners">8dp</dimen>
     <dimen name="tabCorners">2dp</dimen>
     <dimen name="padding">5dp</dimen>
 </resources>

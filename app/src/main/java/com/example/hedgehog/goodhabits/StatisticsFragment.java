@@ -78,7 +78,8 @@ public class StatisticsFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_statistics, null);
-        rootListView = (ListView) rootView;
+        rootListView = (ListView) rootView.findViewById(R.id.rootListView);
+
         lfa = new ListStatisticsFragmentAdapter(activity, R.layout.item_layout, alItems);
         rootListView.setAdapter(lfa);
 

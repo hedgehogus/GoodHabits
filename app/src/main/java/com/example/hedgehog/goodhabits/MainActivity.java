@@ -8,6 +8,7 @@ import android.content.DialogInterface;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.graphics.Typeface;
 import android.os.PersistableBundle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -51,7 +52,7 @@ public class MainActivity extends AppCompatActivity implements ChangeFragmentLis
     static private final int STATISTICS_FRAGMENT = 202;
     private int currentFragment;
 
-    Date date;
+    static Date date;
 
     private static int dateID;
 
@@ -98,6 +99,10 @@ public class MainActivity extends AppCompatActivity implements ChangeFragmentLis
             llButtons.startAnimation(animButtonShow);
         }
 
+    }
+
+    public static Date getDate() {
+        return date;
     }
 
     @Override
@@ -213,6 +218,7 @@ public class MainActivity extends AppCompatActivity implements ChangeFragmentLis
                     tvTopText.setText(getResources().getString(R.string.now_login) + " " + getCurrentUser());
                     if (tvTopText.getVisibility() == View.GONE){
                         tvTopText.setVisibility(View.VISIBLE);
+                        tvTopText.setTypeface(null, Typeface.BOLD);
                     }else{
                         tvTopText.setVisibility(View.GONE);
                     }
@@ -391,8 +397,10 @@ public class MainActivity extends AppCompatActivity implements ChangeFragmentLis
     }
 
     private void clearHabitChecked(){
-        String updateHabitTable = "UPDATE habits SET _is_achieved = '0' WHERE _login = '" + name + "';";
+        String updateHabitTable = "UPDATE habits SET _is_achieved = '0' WHERE _user = '" + name + "';";
         database.execSQL(updateHabitTable);
+        toDoListFragment.setDefaultArray();
+
     }
 
     private void findDateID (){

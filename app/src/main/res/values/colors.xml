@@ -8,5 +8,24 @@
     <color name="colorAccent">#77948da3</color>
     <color name="colorPrimary">#603fb5</color>
     <color name="colorPrimaryDark">#46309f</color>
+    <color name="progressGradientEnd">#bf0202</color>
+    <color name="progressGradientCenter">#fff200</color>
+    <color name="progressGradientStart">#00ca03</color>
+    <color name="highlightTextColor">#bf0202</color>
+
+    <color name="jan">#660008ff</color>
+    <color name="feb">#66006fff</color>
+    <color name="mar">#6600eeff</color>
+    <color name="apr">#66d900ff</color>
+    <color name="may">#66ff0090</color>
+    <color name="jun">#66ff0004</color>
+    <color name="jul">#6605ff00</color>
+    <color name="aug">#66aeff00</color>
+    <color name="sep">#66ffea00</color>
+    <color name="oct">#66ff9900</color>
+    <color name="now">#66ff4d00</color>
+    <color name="dec">#666200ff</color>
+
+
 
 </resources>

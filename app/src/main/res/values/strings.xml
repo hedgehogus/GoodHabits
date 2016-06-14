@@ -27,6 +27,7 @@
     <string name="thu">Thursday</string>
     <string name="fri">Friday</string>
     <string name="sat">Saturday</string>
+    <string name="today">(it\'s today)</string>
 
 
     <string name="greeting">Hello! \nPlease, enter your name...</string>
