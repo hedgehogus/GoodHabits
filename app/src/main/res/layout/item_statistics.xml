@@ -4,6 +4,13 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:background="@color/jan"
+        android:visibility="gone"
+        android:id="@+id/border"
+        android:layout_height="@dimen/border"></FrameLayout>
+
     <LinearLayout
         android:id="@+id/backgroundLayout"
         android:layout_width="match_parent"
@@ -41,8 +48,10 @@
     <ProgressBar
         android:id="@+id/pbProgress"
         style="?android:attr/progressBarStyleHorizontal"
+        android:thumb = "@drawable/swirl"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:progressDrawable="@drawable/progressbar1" />
-</LinearLayout>
+
+    </LinearLayout>

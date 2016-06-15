@@ -9,7 +9,6 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.graphics.Typeface;
-import android.os.PersistableBundle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -22,10 +21,6 @@ import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
-
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -108,7 +103,6 @@ public class MainActivity extends AppCompatActivity implements ChangeFragmentLis
     @Override
     public void onSaveInstanceState(Bundle outState) {
         outState.putInt("fragment", currentFragment);
-        Log.d("asdf", "logloglog123 " + currentFragment);
         super.onSaveInstanceState(outState);
     }
 
@@ -116,7 +110,6 @@ public class MainActivity extends AppCompatActivity implements ChangeFragmentLis
     protected void onRestoreInstanceState(Bundle savedInstanceState) {
         super.onRestoreInstanceState(savedInstanceState);
         currentFragment = savedInstanceState.getInt("fragment");
-        Log.d("asdf", "logloglog " + currentFragment);
         switch (currentFragment){
             case TO_DO_LIST_FRAGMENT:
                 break;
@@ -223,10 +216,7 @@ public class MainActivity extends AppCompatActivity implements ChangeFragmentLis
                         tvTopText.setVisibility(View.GONE);
                     }
                 }
-                testStatisticsTable();
-
-
-
+               // testStatisticsTable();
         }
         return super.onOptionsItemSelected(item);
 
@@ -343,7 +333,6 @@ public class MainActivity extends AppCompatActivity implements ChangeFragmentLis
                 name = c.getString(c.getColumnIndex("_login"));
                 pass = c.getString(c.getColumnIndex("_pass"));
                 lastVisitOfCurrentUser = c.getLong(c.getColumnIndex("_last_visit"));
-                Log.d("asdf", name + " " + pass);
                 c.moveToNext();
             }
         }
@@ -427,7 +416,7 @@ public class MainActivity extends AppCompatActivity implements ChangeFragmentLis
                 c.moveToPrevious();
             }
         }
-       //Log.d("asdf"," " + dateID);
+
     }
     private void testStatisticsTable (){
         String select = "SELECT * FROM statistics;" ;
@@ -443,7 +432,7 @@ public class MainActivity extends AppCompatActivity implements ChangeFragmentLis
                 c.moveToPrevious();
             }
         }
-        //Log.d("asdf"," " + dateID);
+
     }
 
 

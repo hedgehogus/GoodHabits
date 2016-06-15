@@ -5,4 +5,5 @@
     <dimen name="corners">8dp</dimen>
     <dimen name="tabCorners">2dp</dimen>
     <dimen name="padding">5dp</dimen>
+    <dimen name="border">6dp</dimen>
 </resources>

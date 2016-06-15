@@ -70,7 +70,6 @@ public class ToDoListFragment extends Fragment implements View.OnClickListener, 
                 tempRating = c.getInt(c.getColumnIndex("_rating"));
                 tempIsAchieved = (c.getInt(c.getColumnIndex("_is_achieved"))==1? true : false);
                 temp = new Habit(tempName,tempRating,tempIsAchieved,tempId);
-               // Log.d("asdf", " " + tempId + " " + tempName);
                 alHabit.add(temp);
                 c.moveToPrevious();
             }
@@ -120,7 +119,6 @@ public class ToDoListFragment extends Fragment implements View.OnClickListener, 
         boolean b = alHabit.get(position).isAchieved;
         String updateStatus;
         int currentId = alHabit.get(position).itemId;
-        //Log.d("asdf", " " + currentId);
         if (b == false) {
             b = true;
             updateStatus = "UPDATE habits SET _is_achieved = 1 WHERE _id = " + currentId + ";";
@@ -203,7 +201,7 @@ public class ToDoListFragment extends Fragment implements View.OnClickListener, 
             if (habit.isAchieved){
                 currentProgress += habit.rating;
             }
-            Log.d ("asdf", " " + overallProgress + " " + currentProgress );
+
         }
         if (overallProgress == 0){
             currentOverallProgress = 0;
