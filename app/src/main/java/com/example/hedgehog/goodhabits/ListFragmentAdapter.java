@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -34,10 +35,12 @@ public class ListFragmentAdapter extends ArrayAdapter<Habit>  {
         } else{
             rootView = convertView;
         }
-
+        LinearLayout ll = (LinearLayout) rootView;
+        ll.setClipChildren(false);
         TextView tvAction = (TextView) rootView.findViewById(R.id.tvAction);
         TextView tvRating = (TextView) rootView.findViewById(R.id.tvRating);
         ImageView ivTick = (ImageView) rootView.findViewById(R.id.ivTick);
+        
         tvAction.setText(arrayList.get(position).name);
         tvRating.setText(String.valueOf(arrayList.get(position).rating));
         if (arrayList.get(position).isAchieved){

@@ -12,6 +12,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -89,6 +91,7 @@ public class ToDoListFragment extends Fragment implements View.OnClickListener, 
         bAddNew.setOnClickListener(this);
         listView = (ListView) rootView.findViewById(R.id.lvActions);
         lfa = new ListFragmentAdapter(activity, R.layout.item_layout, alHabit);
+        listView.setClipChildren(false);
         listView.setAdapter(lfa);
         listView.setOnItemClickListener(this);
         listView.setOnItemLongClickListener(this);
@@ -127,7 +130,14 @@ public class ToDoListFragment extends Fragment implements View.OnClickListener, 
             updateStatus = "UPDATE habits SET _is_achieved = 0 WHERE _id = " + currentId + ";";
         }
         MainActivity.database.execSQL(updateStatus);
-
+        ImageView tick = (ImageView) view.findViewById(R.id.ivTick);
+        Animation tickAnimation = null;
+        if (b) {
+            tickAnimation = AnimationUtils.loadAnimation(activity, R.anim.anim_tick);
+        } else {
+            tickAnimation = AnimationUtils.loadAnimation(activity, R.anim.anim_tick_fade);
+        }
+        tick.startAnimation(tickAnimation);
         alHabit.get(position).isAchieved = b;
         changeCurrentOverallProgress();
         lfa.notifyDataSetChanged();
