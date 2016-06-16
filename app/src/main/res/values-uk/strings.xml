@@ -1,0 +1,38 @@
+<resources>
+    <string name="app_name">GoodHabits</string>
+    <string name="to_do_list">Список справ</string>
+    <string name="statistics">Статистика</string>
+    <string name="add_new">Додати</string>
+    <string name="name_of_useful_habit">назва корисної звички:</string>
+    <string name="rate_the_importance">на скільки ця звичка важлива?</string>
+    <string name="ok">ОК</string>
+    <string name="cancel">скасувати</string>
+    <string name="delete">видалити</string>
+    <string name="delete_question">Ви дійсно хочете видалити цей елемент?</string>
+    <string name="toast_enter_the_name_of_habit">Будь ласка, введіть назву правильно</string>
+    <string name="clean_all_information">Очистити всю інформацію</string>
+    <string name="you_must_enter">Необхідно ввести ім\'я</string>
+    <string name="incorrect_pass">Невірний пароль!</string>
+    <string name="default_habit">Зробити щось хороше в цьому світі</string>
+    <string name="create_new_account">Хочете створити новий обліковий запис?</string>
+    <string name="show_current_user">Показати(приховати) користувача</string>
+    <string name="now_login">Ви увійшли в систему як: </string>
+    <string name="warning">УВАГА!</string>
+    <string name="really">Ви дійсно хочете видалити всю інформацію? Дані не можна буде відновити!</string>
+
+    <string name="sun">неділя</string>
+    <string name="mon">понеділок</string>
+    <string name="tue">вівторок</string>
+    <string name="wed">середа</string>
+    <string name="thu">четвер</string>
+    <string name="fri">п\'ятниця</string>
+    <string name="sat">субота</string>
+    <string name="today">(це сьогодні)</string>
+
+
+    <string name="greeting">Привіт! \nВведіть, будь ласка, ім\'я ...</string>
+    <string name="greeting_pass">... і пароль =)</string>
+    <string name="enter">Увійти</string>
+    <string name="menu_item_logout">Вийти</string>
+
+</resources>

@@ -43,6 +43,8 @@ public class MainActivity extends AppCompatActivity implements ChangeFragmentLis
     long lastVisitOfCurrentUser;
 
     static private final int MENU_ITEM_LOGOUT_ID = 1;
+    static private final int MENU_CLEAN_ALL_ID = 2;
+    static private final int MENU_SHOW_USER_ID = 3;
     static private final int TO_DO_LIST_FRAGMENT = 201;
     static private final int STATISTICS_FRAGMENT = 202;
     private int currentFragment;
@@ -164,8 +166,8 @@ public class MainActivity extends AppCompatActivity implements ChangeFragmentLis
     public boolean onCreateOptionsMenu(Menu menu) {
 
         menu.add(0, MENU_ITEM_LOGOUT_ID, 0, R.string.menu_item_logout);
-        menu.add(0, 2, 0, R.string.clean_all_information);
-        menu.add(0, 3, 0, R.string.show_current_user);
+        menu.add(0, MENU_CLEAN_ALL_ID, 0, R.string.clean_all_information);
+        menu.add(0, MENU_SHOW_USER_ID, 0, R.string.show_current_user);
 
         return true;
     }
@@ -181,7 +183,7 @@ public class MainActivity extends AppCompatActivity implements ChangeFragmentLis
 
                 }
                 break;
-            case 2:
+            case MENU_CLEAN_ALL_ID:
 
                 AlertDialog warningDialog = new AlertDialog.Builder(this)
                         .setIcon(R.drawable.warn)
@@ -206,7 +208,7 @@ public class MainActivity extends AppCompatActivity implements ChangeFragmentLis
 
 
                 break;
-            case 3:
+            case MENU_SHOW_USER_ID:
                 if (isLoginNow){
                     tvTopText.setText(getResources().getString(R.string.now_login) + " " + getCurrentUser());
                     if (tvTopText.getVisibility() == View.GONE){

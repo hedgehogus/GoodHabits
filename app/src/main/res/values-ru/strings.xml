@@ -1,0 +1,38 @@
+<resources>
+    <string name="app_name">GoodHabits</string>
+    <string name="to_do_list">Список Дел</string>
+    <string name="statistics">Статистика</string>
+    <string name="add_new">Добавить</string>
+    <string name="name_of_useful_habit">название привычки:</string>
+    <string name="rate_the_importance">насколько эта привычка важна?</string>
+    <string name="ok">ОК</string>
+    <string name="cancel">Отмена</string>
+    <string name="delete">Удалить</string>
+    <string name="delete_question">Вы действительно хотите удалить эту привычку? :(</string>
+    <string name="toast_enter_the_name_of_habit">Пожалуйста, введите название правильно</string>
+    <string name="clean_all_information">Очистить всю информацию</string>
+    <string name="you_must_enter">Вы должны ввести имя</string>
+    <string name="incorrect_pass">Неверный пароль!</string>
+    <string name="default_habit">Сделать что-то хорошее в этом мире</string>
+    <string name="create_new_account">Хотите создать новый аккаунт?</string>
+    <string name="show_current_user">Показать/скрыть пользователя</string>
+    <string name="now_login">Вы вошли в систему как: </string>
+    <string name="warning">ВНИМАНИЕ!</string>
+    <string name="really">Вы действительно хотите удалить всю информацию? Её нельзя будет восстановить!</string>
+
+    <string name="sun">воскресенье</string>
+    <string name="mon">понедельник</string>
+    <string name="tue">вторник</string>
+    <string name="wed">среда</string>
+    <string name="thu">четверг</string>
+    <string name="fri">пятница</string>
+    <string name="sat">суббота</string>
+    <string name="today">(это сегодня)</string>
+
+
+    <string name="greeting">Привет! \nПожалуйста, введите имя...</string>
+    <string name="greeting_pass">... и пароль =)</string>
+    <string name="enter">Войти</string>
+    <string name="menu_item_logout">Выйти</string>
+
+</resources>

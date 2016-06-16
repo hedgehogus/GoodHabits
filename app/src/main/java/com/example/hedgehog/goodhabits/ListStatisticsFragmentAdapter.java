@@ -2,16 +2,13 @@ package com.example.hedgehog.goodhabits;
 
 import android.content.Context;
 import android.graphics.Color;
-import android.graphics.Typeface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.FrameLayout;
-import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
@@ -33,8 +30,14 @@ public class ListStatisticsFragmentAdapter  extends ArrayAdapter<StatisticsItem>
 
 
     public View getView(int position, View convertView, ViewGroup parent) {
-        LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View rootView = inflater.inflate(R.layout.item_statistics, parent, false);
+
+        View rootView = null;
+        if (convertView == null) {
+            LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            rootView = inflater.inflate(R.layout.item_statistics, parent, false);
+        } else{
+            rootView = convertView;
+        }
 
         TextView tvDate = (TextView) rootView.findViewById(R.id.tvDate);
         TextView tvDayOfWeek = (TextView) rootView.findViewById(R.id.tvDayOfWeek);
@@ -44,20 +47,21 @@ public class ListStatisticsFragmentAdapter  extends ArrayAdapter<StatisticsItem>
 
         StatisticsItem temp = arrayList.get(position);
         String dayOfWeek = getDayOfWeek(temp.dayOfWeek);
-        tvDate.setText("" + temp.day + "." + temp.month + "." + temp.year);
+        tvDate.setText((temp.day / 10 == 0 ? "0" : "") + temp.day + "." + (temp.month/10 == 0 ? "0" : "") + temp.month + "." + temp.year);
         tvDayOfWeek.setText(dayOfWeek);
         tvProgress.setText(" " + temp.progress + " %");
         pbProgress.setProgress(temp.progress);
         int colorID = 0;
 
         if (temp.isToday){
-            tvDayOfWeek.setTypeface(null, Typeface.BOLD_ITALIC);
-            tvDate.setTypeface(tvDate.getTypeface(), Typeface.BOLD);
-            tvProgress.setTypeface(null, Typeface.BOLD_ITALIC);
             tvDate.setTextColor(context.getResources().getColor(R.color.highlightTextColor));
             tvDayOfWeek.setTextColor(context.getResources().getColor(R.color.highlightTextColor));
             tvProgress.setTextColor(context.getResources().getColor(R.color.highlightTextColor));
             tvDayOfWeek.setText(dayOfWeek + "  " + context.getResources().getString(R.string.today));
+        } else {
+            tvDate.setTextColor(Color.BLACK);
+            tvDayOfWeek.setTextColor(Color.BLACK);
+            tvProgress.setTextColor(Color.BLACK);
         }
 
         switch (temp.month){
