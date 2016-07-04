@@ -76,11 +76,11 @@ public class ToDoListFragment extends Fragment implements View.OnClickListener, 
                 c.moveToPrevious();
             }
         }
-
-
-
     }
 
+    public void notif(){
+        lfa.notifyDataSetChanged();
+    }
 
 
     @Override

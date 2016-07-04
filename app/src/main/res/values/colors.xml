@@ -14,17 +14,17 @@
     <color name="highlightTextColor">#bf0202</color>
 
     <color name="jan">#660008ff</color>
-    <color name="feb">#66006fff</color>
-    <color name="mar">#6600eeff</color>
-    <color name="apr">#66d900ff</color>
-    <color name="may">#66ff0090</color>
-    <color name="jun">#66ff0004</color>
-    <color name="jul">#6605ff00</color>
-    <color name="aug">#66aeff00</color>
+    <color name="feb">#660099ff</color>
+    <color name="mar">#6600ffc4</color>
+    <color name="apr">#6600ff37</color>
+    <color name="may">#6666ff00</color>
+    <color name="jun">#66ff00aa</color>
+    <color name="jul">#66ff0051</color>
+    <color name="aug">#66ff0004</color>
     <color name="sep">#66ffea00</color>
     <color name="oct">#66ff9900</color>
     <color name="now">#66ff4d00</color>
-    <color name="dec">#666200ff</color>
+    <color name="dec">#662a00ff</color>
 
 
 

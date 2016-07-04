@@ -9,6 +9,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.graphics.Typeface;
+import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -78,6 +79,15 @@ public class MainActivity extends AppCompatActivity implements ChangeFragmentLis
         statisticsFragment = new StatisticsFragment();
         statisticsFragment.setDefaultArray();
         date = new Date();
+        Calendar cal = Calendar.getInstance();
+
+        cal.setTime(date);
+       if (cal.get(Calendar.HOUR_OF_DAY)>= 23 && cal.get(Calendar.MINUTE)>=45){
+            AsyncTask<Integer,Void,Void> at = new MyAsyncTask();
+            int sec = cal.get(Calendar.SECOND)+ cal.get(Calendar.MINUTE)*60 + cal.get(Calendar.HOUR_OF_DAY)*60*60;
+            Integer integer = new Integer(86400-sec);
+            at.execute(integer);
+       }
 
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         if (!isLoginNow) {
@@ -434,6 +444,33 @@ public class MainActivity extends AppCompatActivity implements ChangeFragmentLis
                 c.moveToPrevious();
             }
         }
+
+    }
+
+    private class MyAsyncTask extends AsyncTask<Integer,Void,Void>{
+        @Override
+        protected Void doInBackground(Integer... params) {
+            int time = params[0];
+            while (time > 0){
+                try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException e) {
+                }
+                time--;
+                Log.d("asdf", " " + time);
+            }
+            publishProgress();
+            return null;
+        }
+
+        @Override
+        protected void onProgressUpdate(Void... values) {
+            super.onProgressUpdate(values);
+            insertIntoStatisticsTable();
+            toDoListFragment.notif();
+            statisticsFragment.notif();
+        }
+
 
     }
 

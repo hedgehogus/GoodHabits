@@ -66,6 +66,9 @@ public class StatisticsFragment extends Fragment {
             }
         }
     }
+    public void notif(){
+        lfa.notifyDataSetChanged();
+    }
 
 
     @Override
