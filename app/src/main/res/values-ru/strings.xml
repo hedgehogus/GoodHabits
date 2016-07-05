@@ -16,6 +16,7 @@
     <string name="default_habit">Сделать что-то хорошее в этом мире</string>
     <string name="create_new_account">Хотите создать новый аккаунт?</string>
     <string name="show_current_user">Показать/скрыть пользователя</string>
+    <string name="show_button">Показать/скрыть кнопку \"добавить\"</string>
     <string name="now_login">Вы вошли в систему как: </string>
     <string name="warning">ВНИМАНИЕ!</string>
     <string name="really">Вы действительно хотите удалить всю информацию? Её нельзя будет восстановить!</string>

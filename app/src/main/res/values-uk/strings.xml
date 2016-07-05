@@ -15,7 +15,8 @@
     <string name="incorrect_pass">Невірний пароль!</string>
     <string name="default_habit">Зробити щось хороше в цьому світі</string>
     <string name="create_new_account">Хочете створити новий обліковий запис?</string>
-    <string name="show_current_user">Показати(приховати) користувача</string>
+    <string name="show_current_user">Показати(прих.) користувача</string>
+    <string name="show_button">Показати(прих.) кнопку \"додати\"</string>
     <string name="now_login">Ви увійшли в систему як: </string>
     <string name="warning">УВАГА!</string>
     <string name="really">Ви дійсно хочете видалити всю інформацію? Дані не можна буде відновити!</string>

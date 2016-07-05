@@ -16,6 +16,7 @@
     <string name="default_habit">Make something good in this world</string>
     <string name="create_new_account">Want to create a new account?</string>
     <string name="show_current_user">Show(hide) current user</string>
+    <string name="show_button">Show(hide) \"add\" button</string>
     <string name="now_login">Now you are log in as: </string>
     <string name="warning">Warning!</string>
     <string name="really">Do you really want to delete all the information? The data can not be restored!</string>

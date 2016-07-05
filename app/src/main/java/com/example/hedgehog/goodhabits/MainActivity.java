@@ -1,6 +1,7 @@
 package com.example.hedgehog.goodhabits;
 
 import android.app.AlertDialog;
+import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.Context;
@@ -22,6 +23,8 @@ import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import java.util.Calendar;
 import java.util.Date;
 
@@ -30,7 +33,7 @@ public class MainActivity extends AppCompatActivity implements ChangeFragmentLis
     Button bToDoList, bStatistics;
     LoginFragment loginFragment;
     ToDoListFragment toDoListFragment;
-    FragmentManager fragmentManager;
+    static FragmentManager fragmentManager;
     LinearLayout llButtons;
     StatisticsFragment statisticsFragment;
     TextView tvTopText;
@@ -46,6 +49,7 @@ public class MainActivity extends AppCompatActivity implements ChangeFragmentLis
     static private final int MENU_ITEM_LOGOUT_ID = 1;
     static private final int MENU_CLEAN_ALL_ID = 2;
     static private final int MENU_SHOW_USER_ID = 3;
+    static private final int MENU_SHOW_ADD_ID = 4;
     static private final int TO_DO_LIST_FRAGMENT = 201;
     static private final int STATISTICS_FRAGMENT = 202;
     private int currentFragment;
@@ -79,15 +83,7 @@ public class MainActivity extends AppCompatActivity implements ChangeFragmentLis
         statisticsFragment = new StatisticsFragment();
         statisticsFragment.setDefaultArray();
         date = new Date();
-        Calendar cal = Calendar.getInstance();
 
-        cal.setTime(date);
-       if (cal.get(Calendar.HOUR_OF_DAY)>= 23 && cal.get(Calendar.MINUTE)>=45){
-            AsyncTask<Integer,Void,Void> at = new MyAsyncTask();
-            int sec = cal.get(Calendar.SECOND)+ cal.get(Calendar.MINUTE)*60 + cal.get(Calendar.HOUR_OF_DAY)*60*60;
-            Integer integer = new Integer(86400-sec);
-            at.execute(integer);
-       }
 
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         if (!isLoginNow) {
@@ -149,7 +145,8 @@ public class MainActivity extends AppCompatActivity implements ChangeFragmentLis
                 "_login TEXT NOT NULL, " +
                 "_pass TEXT NOT NULL, " +
                 "_last_visit INTEGER NOT NULL," +
-                "_is_login_now INTEGER NOT NULL" +
+                "_is_login_now INTEGER NOT NULL," +
+                "_is_visible_button INTEGER NOT NULL" +
                 ");";
         String createTableHabits = "CREATE TABLE IF NOT EXISTS habits " +
                 "(" +
@@ -178,6 +175,7 @@ public class MainActivity extends AppCompatActivity implements ChangeFragmentLis
         menu.add(0, MENU_ITEM_LOGOUT_ID, 0, R.string.menu_item_logout);
         menu.add(0, MENU_CLEAN_ALL_ID, 0, R.string.clean_all_information);
         menu.add(0, MENU_SHOW_USER_ID, 0, R.string.show_current_user);
+        menu.add(0, MENU_SHOW_ADD_ID, 0, R.string.show_button);
 
         return true;
     }
@@ -214,9 +212,6 @@ public class MainActivity extends AppCompatActivity implements ChangeFragmentLis
                             }
                         }).create();
                 warningDialog.show();
-
-
-
                 break;
             case MENU_SHOW_USER_ID:
                 if (isLoginNow){
@@ -228,10 +223,28 @@ public class MainActivity extends AppCompatActivity implements ChangeFragmentLis
                         tvTopText.setVisibility(View.GONE);
                     }
                 }
-               // testStatisticsTable();
+               break;
+            case MENU_SHOW_ADD_ID:
+                toDoListFragment.hideButton();
         }
         return super.onOptionsItemSelected(item);
 
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        insertIntoStatisticsTable();
+        toDoListFragment.notif();
+        statisticsFragment.notif();
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(date);
+        if (cal.get(Calendar.HOUR_OF_DAY)>= 23 && cal.get(Calendar.MINUTE)>=55){
+            AsyncTask<Integer,Void,Void> at = new MyAsyncTask();
+            int sec = cal.get(Calendar.SECOND)+ cal.get(Calendar.MINUTE)*60 + cal.get(Calendar.HOUR_OF_DAY)*60*60;
+            Integer integer = new Integer(86400-sec);
+            at.execute(integer);
+        }
     }
 
     private void logOut() {
@@ -258,8 +271,8 @@ public class MainActivity extends AppCompatActivity implements ChangeFragmentLis
         String defaultHabit = getResources().getString(R.string.default_habit);
         lastVisitOfCurrentUser = date.getTime();
         if (isNewUser) {
-            String insertIntoUsers = "INSERT INTO users (_login, _pass, _last_visit, _is_login_now) VALUES ('" +
-                    name + "', '" + pass + "', " + Long.toString(lastVisitOfCurrentUser) + ", " + (isLoginNow ? "1" : "0") + ")";
+            String insertIntoUsers = "INSERT INTO users (_login, _pass, _last_visit, _is_login_now, _is_visible_button) VALUES ('" +
+                    name + "', '" + pass + "', " + Long.toString(lastVisitOfCurrentUser) + ", " + (isLoginNow ? "1" : "0") + ",1);";
             database.execSQL(insertIntoUsers);
             String insertFirstHabit = "INSERT INTO habits (_user, _name, _rating, _is_achieved) VALUES ('" + name +
                     "', '" + defaultHabit + "', 10 , 0);";
@@ -354,6 +367,7 @@ public class MainActivity extends AppCompatActivity implements ChangeFragmentLis
         String select = "SELECT _date FROM statistics WHERE _user = '" + name + "';";
         Cursor c = database.rawQuery(select, null);
         Date tempDate = null;
+        date = new Date();
         if(c.moveToLast()){
             long l = c.getLong(c.getColumnIndex("_date"));
             tempDate = new Date(l);
@@ -371,6 +385,7 @@ public class MainActivity extends AppCompatActivity implements ChangeFragmentLis
             int day = cal.get (Calendar.DAY_OF_YEAR);
             int currentYear = currentCal.get(Calendar.YEAR);
             int currentDay = currentCal.get(Calendar.DAY_OF_YEAR);
+
             if (year == currentYear){
                 if (day < currentDay){
                     for (int i = day; i < currentDay; i++){
@@ -450,15 +465,17 @@ public class MainActivity extends AppCompatActivity implements ChangeFragmentLis
     private class MyAsyncTask extends AsyncTask<Integer,Void,Void>{
         @Override
         protected Void doInBackground(Integer... params) {
-            int time = params[0];
+            int time = params[0]+1;
             while (time > 0){
                 try {
                     Thread.sleep(1000);
                 } catch (InterruptedException e) {
                 }
+
                 time--;
-                Log.d("asdf", " " + time);
+
             }
+
             publishProgress();
             return null;
         }
@@ -467,8 +484,9 @@ public class MainActivity extends AppCompatActivity implements ChangeFragmentLis
         protected void onProgressUpdate(Void... values) {
             super.onProgressUpdate(values);
             insertIntoStatisticsTable();
-            toDoListFragment.notif();
-            statisticsFragment.notif();
+                toDoListFragment.notif();
+                statisticsFragment.notif();
+
         }
 
 

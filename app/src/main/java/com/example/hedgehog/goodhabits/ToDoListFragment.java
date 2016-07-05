@@ -34,6 +34,7 @@ public class ToDoListFragment extends Fragment implements View.OnClickListener, 
     Activity activity;
     Button bAddNew;
     ListView listView;
+    Boolean visibleButton;
 
     String user;
     static int currentOverallProgress;
@@ -76,9 +77,26 @@ public class ToDoListFragment extends Fragment implements View.OnClickListener, 
                 c.moveToPrevious();
             }
         }
+        visibleButton = true;
+        String select2 = "SELECT _is_visible_button FROM users WHERE _login = '" + user + "';";
+        Cursor c2 = MainActivity.database.rawQuery(select2, null);
+        if (c2.moveToLast()) {
+            while (!c2.isBeforeFirst()) {
+                int vis = c2.getInt(c2.getColumnIndex("_is_visible_button"));
+                if (vis == 1) {
+                    visibleButton = true;
+                } else {
+                    visibleButton = false;
+
+                }
+                c2.moveToPrevious();
+            }
+        }
+
     }
 
     public void notif(){
+        setDefaultArray();
         lfa.notifyDataSetChanged();
     }
 
@@ -89,6 +107,11 @@ public class ToDoListFragment extends Fragment implements View.OnClickListener, 
         View rootView = inflater.inflate(R.layout.fragment_to_do_list, null);
         bAddNew = (Button) rootView.findViewById(R.id.bAddNew);
         bAddNew.setOnClickListener(this);
+        if (!visibleButton){
+            bAddNew.setVisibility(View.GONE);
+       } else {
+            bAddNew.setVisibility(View.VISIBLE);
+        }
         listView = (ListView) rootView.findViewById(R.id.lvActions);
         lfa = new ListFragmentAdapter(activity, R.layout.item_layout, alHabit);
         listView.setClipChildren(false);
@@ -97,6 +120,24 @@ public class ToDoListFragment extends Fragment implements View.OnClickListener, 
         listView.setOnItemLongClickListener(this);
         //changeCurrentOverallProgress();
         return rootView;
+    }
+
+    public void hideButton(){
+        String update;
+
+        if (visibleButton){
+            bAddNew.setVisibility(View.GONE);
+            visibleButton = false;
+            update ="UPDATE users SET _is_visible_button = '0' WHERE _login = '" + user + "';";
+        }else{
+            bAddNew.setVisibility(View.VISIBLE);
+            update ="UPDATE users SET _is_visible_button = '1' WHERE _login = '" + user + "';";
+            visibleButton = true;
+        }
+        Log.d("asdf", "change" + visibleButton);
+        MainActivity.database.execSQL(update);
+
+
     }
 
 
@@ -141,6 +182,10 @@ public class ToDoListFragment extends Fragment implements View.OnClickListener, 
         alHabit.get(position).isAchieved = b;
         changeCurrentOverallProgress();
         lfa.notifyDataSetChanged();
+        StatisticsFragment sfr = (StatisticsFragment) MainActivity.fragmentManager.findFragmentByTag("statisticsFragment");
+        if (sfr != null) {
+            sfr.notif();
+        }
     }
 
     @Override

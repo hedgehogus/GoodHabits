@@ -6,6 +6,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -29,6 +30,7 @@ public class StatisticsFragment extends Fragment {
     ArrayList<StatisticsItem> alItems = new ArrayList<>();
     int currentDateId;
     String user;
+    boolean isCreated = false;
 
 
     ListStatisticsFragmentAdapter lfa;
@@ -46,6 +48,7 @@ public class StatisticsFragment extends Fragment {
         Date tempDate = null;
         Calendar cal = Calendar.getInstance();
         user = MainActivity.getCurrentUser();
+
         currentDateId = MainActivity.getDateID();
         String select = "SELECT _id, _date, _rating FROM statistics WHERE _user = '" + user + "';";
         Cursor c = MainActivity.database.rawQuery(select, null);
@@ -56,18 +59,22 @@ public class StatisticsFragment extends Fragment {
                 tempDate = new Date(c.getLong(c.getColumnIndex("_date")));
                 cal.setTime(tempDate);
                 tempDay = cal.get(Calendar.DAY_OF_MONTH);
-                tempMonth = cal.get(Calendar.MONTH);
+                tempMonth = cal.get(Calendar.MONTH)+1;
                 tempYear = cal.get(Calendar.YEAR);
                 tempDayOfWeek = cal.get(Calendar.DAY_OF_WEEK);
                 isToday = tempId == currentDateId;
                 temp = new StatisticsItem(tempId, tempDay, tempMonth, tempYear, tempProgress, isToday, tempDayOfWeek);
+
                 alItems.add(temp);
                 c.moveToPrevious();
             }
         }
     }
     public void notif(){
-        lfa.notifyDataSetChanged();
+        setDefaultArray();
+        if(isCreated) {
+            lfa.notifyDataSetChanged();
+        }
     }
 
 
@@ -85,7 +92,7 @@ public class StatisticsFragment extends Fragment {
 
         lfa = new ListStatisticsFragmentAdapter(activity, R.layout.item_layout, alItems);
         rootListView.setAdapter(lfa);
-
+        isCreated = true;
         return rootView;
     }
 

@@ -64,7 +64,7 @@ public class ListStatisticsFragmentAdapter  extends ArrayAdapter<StatisticsItem>
             tvProgress.setTextColor(Color.BLACK);
         }
 
-        switch (temp.month){
+        switch (temp.month-1){
             case Calendar.JANUARY:
                 rootView.setBackgroundResource(R.drawable.month_jan);
                 colorID = R.color.jan;
