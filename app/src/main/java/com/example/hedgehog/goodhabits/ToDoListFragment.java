@@ -97,7 +97,9 @@ public class ToDoListFragment extends Fragment implements View.OnClickListener, 
 
     public void notif(){
         setDefaultArray();
-        lfa.notifyDataSetChanged();
+        if (lfa != null) {
+            lfa.notifyDataSetChanged();
+        }
     }
 
 
