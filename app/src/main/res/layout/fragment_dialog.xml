@@ -46,23 +46,25 @@
             android:text="@string/ok"
             android:id="@+id/bOk"
             android:background="@drawable/tabbuttons"
-            android:layout_weight="1"
+            android:layout_weight="3"
             android:layout_gravity="right" />
 
         <Button
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:text="@string/delete"
-            android:layout_weight="1"
+            android:textSize="15dp"
+            android:layout_weight="4"
             android:visibility="gone"
             android:background="@drawable/tabbuttons"
             android:id="@+id/bDel" />
 
         <Button
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:text="@string/cancel"
-            android:layout_weight="1"
+            android:textSize="15dp"
+            android:layout_weight="4"
             android:background="@drawable/tabbuttons"
             android:id="@+id/bCancel" />
     </LinearLayout>
