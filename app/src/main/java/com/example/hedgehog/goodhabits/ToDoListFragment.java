@@ -27,7 +27,7 @@ public class ToDoListFragment extends Fragment implements View.OnClickListener, 
     Activity activity;
     Button bAddNew;
     ListView listView;
-    Boolean visibleButton;
+    Boolean visibleButton = true;
 
     String user;
     static int currentOverallProgress;
