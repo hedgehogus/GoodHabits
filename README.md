@@ -31,8 +31,4 @@ All information about previous days you can see in statistics fragment. Daily ra
 
 This application supports English, Russian and Ukrainian languages
 
-## Create bin folder and put there .apk file of your app
-
-## Give the url of your application in your readme
-
-## Add license file to your app
+## [Download APK](bin/app-release.apk)
